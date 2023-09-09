@@ -1,17 +1,50 @@
-
 body {
-    font-size: 6em;
+    font-size: 1.2em;
     text-align: center;
-    background-color:#6495ed;
-    color:white;
-    font-family: helvetica;
-    
-    
-}
-input{
-    font-size: 0.8em
-}
-button{
-    font-size:0.8em
+    background-color: #6495ed;
+    color: white;
+    font-family: helvetica, Arial;
 }
 
+#add {
+    background-color: red;
+    border: 0;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.remove {
+    margin-top: 10px;
+    background-color: #f2f205;
+    float: right;
+    clear: both;
+    padding-right: 10px;
+    border-radius: 5px;
+    width: 60px;
+    height: 20px;
+    border-style: none;
+}
+
+#wrapper {
+    width: 450px;
+    background-color: #000365;
+    margin: 50px auto;
+    padding-bottom: 30px;
+    padding-left: 65px;
+    padding-top: 30px;
+    padding-right: 65px;
+    border-radius: 25px;
+}
+
+ul {
+    list-style:none;
+    text-align:left;
+    line-height: 35px; 
+}
+
+#task {
+    width: 320px;
+    height: 30px; 
+}
