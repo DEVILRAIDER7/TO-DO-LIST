@@ -1,33 +1,48 @@
-// Get the DOM elements
-const taskInput = document.querySelector("#task");
-const addBtn = document.querySelector("#add");
-const todosDiv = document.querySelector("#todos");
+function get_todos(){
+    var todos = new Array;
+    var todos_str= localStorage.getItem('todo');
+    if (todos_str !== null){
+        todos=JSON.parse(todos_str);
+    }
+    return todos;
+}
 
-// Add event listener to the "Add Task" button
-addBtn.addEventListener("click", () => {
-    // Get the task from the input field
-    const task = taskInput.value;
+function add(){
+    var task = document.getElementById('task').value;
+    var todos= get_todos();
+    todos.push(task);
+    localStorage.setItem('todo',JSON.stringify(todos));
+    
+    show();
+    
+    return false;
+}
 
-    // Create a new list item for the task
-    const li = document.createElement("li");
-    li.textContent = task;
+function clearDefault(a){
+    if (a.defaultValue==a.value){a.value=""}
+};
 
-    // Create a "Remove" button for the task
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove";
-    removeBtn.classList.add("remove");
-    removeBtn.addEventListener("click", () => {
-        // Remove the task from the list when the "Remove" button is clicked
-        li.remove();
-    });
+function remove(){
+    var id = this.getAttribute('id');
+    var todos=get_todos();
+    todos.splice(id,1);
+    localStorage.setItem('todo', JSON.stringify(todos));
+    show();
+    return false;
+}
 
-    // Append the "Remove" button to the list item
-    li.appendChild(removeBtn);
-
-    // Append the list item to the "todos" div
-    todosDiv.appendChild(li);
-
-    // Clear the input field
-    taskInput.value = "";
-});
-
+function show(){
+    var todos= get_todos();
+    var html='<ul>';
+    for(var i=0;i<todos.length;i++){
+        html+='<li>'+ todos[i] + '<button class="remove" id="' + i + '">Delete</button> </li>';
+    };
+    html+='</ul>';
+    document.getElementById('todos').innerHTML=html;
+    var buttons= document.getElementsByClassName('remove');
+    for(var i=0;i<buttons.length;i++){
+        buttons[i].addEventListener('click',remove);
+    };
+}
+document.getElementById('add').addEventListener('click',add);
+show;
